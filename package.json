@@ -1,0 +1,26 @@
+{
+  "name": "restfulblog_1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "concurrently": "^5.3.0",
+    "cors": "^2.8.5",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.4",
+    "react-router-dom": "^5.2.0",
+    "semantic-ui-css": "^2.4.1",
+    "semantic-ui-react": "^1.2.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "blog-install": "cd blog && npm install",
+    "start": "node app.js",
+    "app": "nodemon app.js",
+    "blog": "npm start --prefix blog",
+    "dev": "concurrently \"npm run app\" \"npm run blog\""
+  },
+  "author": "",
+  "license": "ISC"
+}
