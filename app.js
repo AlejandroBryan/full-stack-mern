@@ -1,6 +1,7 @@
 const express = require("express")
 const bodyParser = require("body-parser")
 const expressSanitizer = require("express-sanitizer")
+const cors = require("cors")
 const app = express()
 const mongoose = require("mongoose")
 const methodOverride = require("method-override")
@@ -8,7 +9,7 @@ const seedDB = require('./seed')
 
 const port = 3031
 const blogRoute = require('./routes/blogs')
-//seedDB()
+seedDB()
 
 // Database setup!!!
 mongoose.connect("mongodb://localhost:27017/restful_blog_app_1",{
@@ -32,6 +33,7 @@ app.use(bodyParser.urlencoded({extended: true}))
 app.use(expressSanitizer())
 //overinding our put mehtod 
 app.use(methodOverride("_method"))
+app.use(cors())
 
 
 app.use('/blogs', blogRoute)

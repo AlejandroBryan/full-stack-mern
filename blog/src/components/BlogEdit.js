@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import axios from 'axios'
 
 export default class CreateBlog extends Component{
     constructor(props){
@@ -18,7 +19,7 @@ export default class CreateBlog extends Component{
         }
       }
       conponentDidMount() {
-        fetch('https://localhost:3031/blogs/:id/edit'+this.props.match.params.id, {
+       axios('https://localhost:3031/blogs/:id/edit'+this.props.match.params.id, {
             method: 'GET',
             headers: { 'Content-Type': 'application/json'}
         })
@@ -49,7 +50,7 @@ export default class CreateBlog extends Component{
   
       console.log(blog)
   
-      fetch('http://localhost:3001/blogs/:id/edit'+this.props.match.params.id)
+      fetch('http://localhost:3031/blogs/edit/'+this.props.match.params.id)
       .then(res => res.json())
       .then(blogs => console.log(blogs))
   

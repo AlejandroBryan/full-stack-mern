@@ -13,7 +13,7 @@ router.get("/", async(req, res) => {
   })
 
  // ROUTE INDE", 
- router.get ('/new', async(req, res)=>{ 
+ router.post ('/new', async(req, res)=>{ 
 	try{
 	const title = await req.body.title
 	const image= await req.body.image
@@ -33,9 +33,9 @@ router.get("/", async(req, res) => {
 })
 		   
 //Create Route!
-router.post("/:id", async(req, res)=>{ 
+router.post("/new/:id", async(req, res)=>{ 
     try{
-     const newBlog = await Blog.create(req.body.blog)
+     const newBlog = await Blog.create(req.body.id)
      
     }catch(err) { res.status(400).json('Error: ' + err.message)}			
 })
@@ -43,7 +43,7 @@ router.post("/:id", async(req, res)=>{
 //EDIT ROUT!
 router.get("/:id", async(req, res)=> {
 	try{
-		const foundBlog = awaitBlog.findById(req.params.id)
+		const foundBlog = await Blog.findById(req.params.id)
 		res.json(foundBlog)
 	}
 	catch(err) { res.status(400).json('Error: ' + err.message)}
@@ -75,8 +75,8 @@ router.get("/:id", async(req, res)=> {
 router.put("/:id", async(req, res)=>{
 
 	try{
-		req.body.blog.body = req.sanitize(req.body.blog.body)
-		const blog= await	Blog.findByIdAndUpdate(req.params.id, req.body.blog.body)
+	
+		const foundBlog= await	Blog.findByIdAndUpdate(req.params.id)
 		res.json(foundBlog)
 	}
 	catch(err) { res.status(400).json('Error: ' + err.message)}	

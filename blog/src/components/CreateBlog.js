@@ -47,7 +47,7 @@ onSubmit(e){
         headers:{'Content-Type': 'application/json'},
     }
 
-    fetch('https://localhost:3031/blogs/new/', options, blog)
+    fetch('https://localhost:3031/api/blogs/new/', options, blog)
     .then(response => console.log(response.data))
 
 

@@ -1,28 +1,38 @@
 
 import React, { Component } from 'react'
+import axios from 'axios'
 import Blog from './Blog'
+
 
 
 
 
 export default class BlogList extends Component{
 constructor(){
-    super();
+    super()
 
     this.state={blogs:[]}
+  
 
    }
 
    componentDidMount(){
-       const options = {
+    const options = {
+        url: 'http://localhost:3031/blogs',
         method: 'GET',
-        credentials: 'origin',
-        headers:{  'Content-Type': 'application/json'}
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json;charset=UTF-8'
+        },
+        data: JSON.stringify()
+       
+        
     }
-    fetch('http://localhost:3031/blogs', options)
-    .then(res=> this.setState({blogs: res}))
-    .catch(err => err)
+    axios(options)
+    .then(response => this.setState({blogs:response.data}))
+    .catch(err => console.error(err.message))
     }
+   
 
     render(){
 
@@ -31,13 +41,14 @@ constructor(){
             
             <h1>Welcome to my Blogs</h1>
             {
-            this.state.blogs.map((blog, i) =>{ 
+           this.state.blogs.map(blog =>{ 
                 return(
             <Blog
-            key={blog[i]._id}
-            title={blog[i].title}
-            body={blog[i].body}
-            image={blog[i].image}
+            key={blog._id}
+            title={blog.title}
+            image={blog.image}
+            body={blog.body}
+            created={blog.created}
             />
              ) 
                  })
