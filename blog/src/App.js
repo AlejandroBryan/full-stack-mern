@@ -15,8 +15,8 @@ function App() {
 	<div className="ui container" style={{marginTop: '7em'}}>
 	
 		<Route path="/blogs" exact component={BlogList}/>
-		<Route path="/new" component={CreateBlog} />
-		<Route path={"/blogs/:id"} exact component={ShowBlogs}/>
+		<Route path="/blogs/new" component={CreateBlog} />
+		<Route path="/blogs/:id" exact component={ShowBlogs}/>
 		
 	</div>
 	

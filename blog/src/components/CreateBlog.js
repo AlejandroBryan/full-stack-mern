@@ -37,20 +37,7 @@ onSubmit = e =>{
 
     console.log(blog)
 
-
-    const options = {
-        url: 'http://localhost:3031/blogs',
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json;charset=UTF-8'
-        },
-        data: JSON.stringify()
-       
-        
-    }
-
-    axios(options)
+    axios.post('http://localhost:3031/blogs', blog)
     .then(response => console.log(response.data))
 
 

@@ -4,6 +4,8 @@ import axios from 'axios'
 
 
 
+
+
 const Blogs =({image, title, body, created})=>{
 
     return (
@@ -36,39 +38,39 @@ export default class ShowBlogs extends Component{
 constructor(){
     super();
 
-    this.state = {
-        blogs: []
-    }
+    this.state = {blog:[]}
+
 
    }
 
    componentDidMount(){ 
-       const {match : {params} } = this.props
-       
+    const {match : {params} } = this.props
+
     axios.get(`http://localhost:3031/blogs/${params.id}`)
-    .then((response=> response.json()))
-    .then(response => ({blogs:response.data}))
+    .then(response => this.setState({blog: response.data}))
     .catch(err => console.error(err.message))
 
     }
    
 
     render(){
+        
+       const {blog} = this.state
 
         return(
             
             <>  
-            <h1>Blogs</h1>
-            {this.state.blogs.map(blog =>{ 
+            {blog.map(blogs =>{ 
                 return(<Blogs
-                    key={blog._id}
-                    id={blog._id}
-                    title={blog.title}
-                    image={blog.image}
-                    body={blog.body}
-                    created={blog.created}
+                    key={blogs.id}
+                    title={blogs.title}
+                    image={blogs.image}
+                    body={blogs.body}
+                    created={blogs.created}
                    />)
-                 })
+                 }
+                 
+                 )
                 }      
              </>
         )

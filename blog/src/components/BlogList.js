@@ -5,7 +5,7 @@ import Blog from './Blog'
 
 
 export default class BlogList extends Component{
-constructor(){
+constructor() {
     super()
 
     this.state={blogs:[]}
@@ -28,7 +28,8 @@ constructor(){
             <h1>Welcome to my Blogs</h1>
             {this.state.blogs.map(blog =>{ 
                 return(<Blog
-                    key={blog._id}
+                    key={blog.id}
+                    id={blog._id}
                     title={blog.title}
                     image={blog.image}
                     body={blog.body}

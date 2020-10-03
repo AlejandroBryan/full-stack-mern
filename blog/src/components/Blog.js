@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { withRouter, Link } from "react-router-dom";
+import { withRouter} from "react-router-dom";
 import 'semantic-ui-css/semantic.min.css';
 
 
@@ -26,13 +26,10 @@ const Blog =({title, body, created, image, id}) =>{
        <div className="extra">
        
        
-        <button className="ui floated basic violet button" >
-        <Link to={`/blogs/${id}`}>
+        <a href={`/blogs/${id}`} className="ui floated basic violet button" >
            Read More 
-           
            <i className="right chevron icon"></i>
-           </Link>
-           </button>
+           </a>
            
        </div>
      </div>
