@@ -47,7 +47,7 @@ constructor(){
     const {match : {params} } = this.props
 
     axios.get(`http://localhost:3031/blogs/${params.id}`)
-    .then(response => this.setState({blog: response.data}))
+    .then(response => this.setState({blog: response}))
     .catch(err => console.error(err.message))
 
     }
@@ -56,6 +56,7 @@ constructor(){
     render(){
         
        const {blog} = this.state
+       console.log(blog)
 
         return(
             
