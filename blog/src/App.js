@@ -16,7 +16,7 @@ function App() {
 	
 		<Route path="/blogs" exact component={BlogList}/>
 		<Route path="/new" component={CreateBlog} />
-		<Route path={"/blogs/:id"} exact render={()=> <ShowBlogs/>}/>
+		<Route path={"/blogs/:id"} exact component={ShowBlogs}/>
 		
 	</div>
 	

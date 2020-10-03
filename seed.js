@@ -25,7 +25,8 @@ async function seedDB(){
         for(const seed of seeds) {
        let blog = await Blog.create(seed);
        console.log('Blog created');
-       await blog.save()     
+       await blog.save() 
+       await blog.remove()    
     } 
 }catch(err) {console.log(err)}
 

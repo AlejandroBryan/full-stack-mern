@@ -14,8 +14,9 @@ constructor(){
    }
 
    componentDidMount(){
+    const {match : {params} } = this.props
 
-    axios.get('http://localhost:3031/blogs/')
+    axios.get('http://localhost:3031/blogs/'+params.id)
     .then(response => this.setState({blogs:response.data}))
     .catch(err => console.error(err.message))
     }
@@ -30,7 +31,6 @@ constructor(){
             {this.state.blogs.map(blog =>{ 
                 return(<Blog
                     key={blog._id}
-                    id={blog._id}
                     title={blog.title}
                     image={blog.image}
                     body={blog.body}

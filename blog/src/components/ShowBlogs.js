@@ -45,11 +45,10 @@ constructor(){
    componentDidMount(){ 
        const {match : {params} } = this.props
     axios.get(`http://localhost:3031/blogs/${params.id}`)
+    .then((response=> response.json()))
     .then(response => ({blogs:response.data}))
     .catch(err => console.error(err.message))
 
-    console.log(this.props);
-    console.log(this.props.match.params.id);
     }
    
 

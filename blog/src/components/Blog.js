@@ -5,7 +5,7 @@ import 'semantic-ui-css/semantic.min.css';
 
 
 
-const Blog =({image, title, body, created,}) =>{
+const Blog =({title, body, created, image}) =>{
   
     return (
         <div className="ui main text container">
@@ -18,13 +18,13 @@ const Blog =({image, title, body, created,}) =>{
      <div className="content">
        <h2 className="header">{title}</h2>
        <div className="meta">
-         <span className="cinema">{created && created.substring(0, 10)}</span>
+         <span className="cinema">{created.substring(0, 10)}</span>
        </div>
        <div className="description">
-         <p>{body && body.substring(0, 245)}.....</p>
+         <p>{body.substring(0, 245)}.....</p>
        </div>
        <div className="extra">
-       <Link to={`/blogs/${_id}`}>
+       <Link to={`/blogs/${blogs.id}`}>
        
         <button className="ui floated basic violet button" >
            Read More 
