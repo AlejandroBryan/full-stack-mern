@@ -6,13 +6,16 @@ const app = express()
 const mongoose = require("mongoose")
 const methodOverride = require("method-override")
 const seedDB = require('./seed')
+require('dotenv').config()
 
-const port = 3031
+const port = process.env.Port || 3031
+
 const blogRoute = require('./routes/blogs')
-//seedDB()
+seedDB()
+const databaseUrl = process.env.MONGODB_URL ||"mongodb://localhost:27017/restful_blog_app_1"
 
 // Database setup!!!
-mongoose.connect("mongodb://localhost:27017/restful_blog_app_1",{
+mongoose.connect(databaseUrl,{
 useNewUrlParser: true,
 useCreateIndex: true,	
 useUnifiedTopology: true,

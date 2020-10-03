@@ -43,7 +43,8 @@ constructor(){
    }
 
    componentDidMount(){ 
-    axios.get('http://localhost:3031/blogs/'+this.props.match.params.id)
+       const {match : {params} } = this.props
+    axios.get(`http://localhost:3031/blogs/${params.id}`)
     .then(response => ({blogs:response.data}))
     .catch(err => console.error(err.message))
 
