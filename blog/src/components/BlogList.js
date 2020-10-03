@@ -14,9 +14,7 @@ constructor(){
    }
 
    componentDidMount(){
-    const {match : {params} } = this.props
-
-    axios.get('http://localhost:3031/blogs/'+params.id)
+    axios.get('http://localhost:3031/blogs')
     .then(response => this.setState({blogs:response.data}))
     .catch(err => console.error(err.message))
     }
