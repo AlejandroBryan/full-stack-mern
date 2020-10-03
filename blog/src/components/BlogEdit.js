@@ -2,16 +2,9 @@ import React, { Component } from 'react'
 import axios from 'axios'
 
 export default class CreateBlog extends Component{
-    constructor(props){
+    constructor(){
         super()
-  
-        this.onChangeBody = this.onChangeBody.bind(this)
-        this.onChangeImage = this.onChangeImage.bind(this)
-        this.onChangeTitle = this.onChangeTitle.bind(this)
-        this.onSubmit = this.onSubmit.bind(this)
-  
-  
-        this.state = {
+    this.state = {
             title: '', 
             image:'',
             body: '',
@@ -19,27 +12,35 @@ export default class CreateBlog extends Component{
         }
       }
       conponentDidMount() {
-       axios('https://localhost:3031/blogs/:id/edit'+this.props.match.params.id, {
+
+        const options = {
+            url: 'http://localhost:3031/blogs/edit/',
             method: 'GET',
-            headers: { 'Content-Type': 'application/json'}
-        })
-        .then(res => res.json())
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json;charset=UTF-8'
+            },
+            data: JSON.stringify()
+           
+            
+        }
+       axios(options+this.props.match.params.id)
         .then(blogs => console.log(blogs))
   
       }
   
-      onChangeTitle(e){
+      onChangeTitle= e =>{
           this.setState({title: e.target.value})
       }
-      onChangeImage(e){
+      onChangeImage= e =>{
           this.setState({image: e.target.value})
       }
-      onChangeBody(e){
+      onChangeBody = e =>{
           this.setState({body: e.target.value})
       }
 
   
-  onSubmit(e){
+  onSubmit= e =>{
       e.preventDefault()
   
       const blog= {
@@ -50,8 +51,7 @@ export default class CreateBlog extends Component{
   
       console.log(blog)
   
-      fetch('http://localhost:3031/blogs/edit/'+this.props.match.params.id)
-      .then(res => res.json())
+      axios.post('http://localhost:3031/blogs/edit'+this.state.match.params.id)
       .then(blogs => console.log(blogs))
   
       window.location = '/'

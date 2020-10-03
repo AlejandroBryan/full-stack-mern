@@ -1,16 +1,13 @@
 
 import React, { Component } from 'react'
+import axios from 'axios'
 
 
 
 export default class CreateBlog extends Component{
-    constructor(props){
+    constructor(){
       super()
-      this.onChangeBody = this.onChangeBody.bind(this)
-      this.onChangeImage = this.onChangeImage.bind(this)
-      this.onChangeTitle = this.onChangeTitle.bind(this)
-      this.onSubmit = this.onSubmit.bind(this)
-      
+
       this.state = {
           title: '', 
           image:'',
@@ -20,17 +17,17 @@ export default class CreateBlog extends Component{
       
     } 
 
-    onChangeTitle(e){
+    onChangeTitle = e =>{
         this.setState({title: e.target.value})
     }
-    onChangeImage(e){
+    onChangeImage = e =>{
         this.setState({image: e.target.value})
     }
-    onChangeBody(e){
+    onChangeBody = e =>{
         this.setState({body: e.target.value})
     }
     
-onSubmit(e){
+onSubmit = e =>{
     e.preventDefault()
     const blog = {
         title: this.state.title,
@@ -42,12 +39,18 @@ onSubmit(e){
 
 
     const options = {
+        url: 'http://localhost:3031/blogs',
         method: 'POST',
-        credentials: 'origin',
-        headers:{'Content-Type': 'application/json'},
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json;charset=UTF-8'
+        },
+        data: JSON.stringify()
+       
+        
     }
 
-    fetch('https://localhost:3031/api/blogs/new/', options, blog)
+    axios(options)
     .then(response => console.log(response.data))
 
 

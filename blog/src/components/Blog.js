@@ -1,8 +1,12 @@
+
 import React from 'react';
+import { withRouter, Link } from "react-router-dom";
 import 'semantic-ui-css/semantic.min.css';
 
 
-const Blog =({body, image, title, created})=>{
+
+const Blog =({image, title, body, created, id}, props) =>{
+  
     return (
         <div className="ui main text container">
  <div className="ui top attached segment">
@@ -14,17 +18,21 @@ const Blog =({body, image, title, created})=>{
      <div className="content">
        <h2 className="header">{title}</h2>
        <div className="meta">
-         <span className="cinema">{created.substring(0, 10)}</span>
+         <span className="cinema">{created && created.substring(0, 10)}</span>
        </div>
        <div className="description">
-         <p>{body.substring(0, 245)}.....</p>
+         <p>{body && body.substring(0, 245)}.....</p>
        </div>
        <div className="extra">
-         <a  className="ui floated basic violet button">
-           Read More
+       <Link to={`/blogs/${id}`}>
+       
+        <button className="ui floated basic violet button" >
+           Read More 
+        
            <i className="right chevron icon"></i>
-           </a>
-         
+           
+           </button>
+           </Link>
        </div>
      </div>
    </div>
@@ -36,4 +44,4 @@ const Blog =({body, image, title, created})=>{
 
 }
 
-export default Blog
+export default withRouter(Blog)
