@@ -12,20 +12,10 @@ export default class CreateBlog extends Component{
         }
       }
       conponentDidMount() {
+    const {match : {params} } = this.props
 
-        const options = {
-            url: 'http://localhost:3031/blogs/edit/',
-            method: 'GET',
-            headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json;charset=UTF-8'
-            },
-            data: JSON.stringify()
-           
-            
-        }
-       axios(options+this.props.match.params.id)
-        .then(blogs => console.log(blogs))
+    axios.get(`http://localhost:3031/blogs/${params.id}/edit/`)
+    .then(blogs => console.log(blogs))
   
       }
   
@@ -50,8 +40,10 @@ export default class CreateBlog extends Component{
       }
   
       console.log(blog)
+      
+      const {match : {params} } = this.props
   
-      axios.post('http://localhost:3031/blogs/edit'+this.state.match.params.id)
+      axios.post(`http://localhost:3031/blogs/${params.id}/edit/`)
       .then(blogs => console.log(blogs))
   
       window.location = '/'

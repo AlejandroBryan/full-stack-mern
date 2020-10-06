@@ -1,37 +1,6 @@
-
+import {Link} from 'react-router-dom'
 import React, { Component } from 'react'
 import axios from 'axios'
-
-
-
-
-
-const Blogs =({image, title, body, created})=>{
-
-    return (
-        
-        <div className="ui main text container">
-            <div className="ui huge header">{title}</div>
-         <div className="ui top attached segment">
-             <div className="item">
-                <img className="ui centered rounded image" src={image} alt="blog" />
-                 <div className="content">
-                     <div className="meta">
-                         <span>{created}</span>
-                     </div>
-                      <div className="description">
-                         <p>{body}</p>
-                      </div>
-                 </div>
-             </div>
-
-         </div>
-         </div>
-
-
-    )  
-}
-
 
 
 export default class ShowBlogs extends Component{
@@ -40,41 +9,63 @@ constructor(){
 
     this.state = {blog:[]}
 
-
    }
 
    componentDidMount(){ 
     const {match : {params} } = this.props
 
     axios.get(`http://localhost:3031/blogs/${params.id}`)
-    .then(response => this.setState({blog: response}))
+    .then(response => this.setState({blog: response.data}))
     .catch(err => console.error(err.message))
 
     }
-   
+
+    handleDelete = e =>{
+        const {match : {params} } = this.props
+
+        axios.delete(`http://localhost:3031/blogs/${params.id}`)
+          .then(() => {
+            console.log('user deleted');
+          });
+      }
 
     render(){
         
        const {blog} = this.state
        console.log(blog)
-
-        return(
             
-            <>  
-            {blog.map(blogs =>{ 
-                return(<Blogs
-                    key={blogs.id}
-                    title={blogs.title}
-                    image={blogs.image}
-                    body={blogs.body}
-                    created={blogs.created}
-                   />)
-                 }
+        return(
+            <div className="ui main text container">
+            <div className="ui huge header">{blog.title}</div>
+                 <div className="ui top attached segment">
+                     <div className="item">
+                        <img className="ui centered rounded image" src={blog.image} alt="blog" />
+                         <div className="content">
+                             <div className="meta">
+                                 <span>{blog.created}</span>
+                             </div>
+                              <div className="description">
+                                 <p>{blog.body}</p>
+                              </div>
+                         </div>
+                     </div>
+                     <button class="ui green button">
+                     <Link to="/blogs/id/edit">
+                     Edit
+                     </Link>
+                     </button>
+
+                     <button class="ui orange button">
+                     <Link to="/blogs/id/delete">
+                     Delete
+                     </Link>
+                    
+                     </button>
+        
+                 </div>
+                 </div> ) 
                  
-                 )
-                }      
-             </>
-        )
-    }
+                }     
+ 
 
 }
