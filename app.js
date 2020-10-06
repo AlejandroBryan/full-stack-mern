@@ -8,6 +8,7 @@ const methodOverride = require("method-override")
 const seedDB = require('./seed')
 require('dotenv').config()
 
+const port = process.env.PORT || 3031
 
 
 const blogRoute = require('./routes/blogs')
@@ -41,6 +42,6 @@ app.use(cors())
 
 app.use('/blogs', blogRoute)
 
-app.listen(process.env.PORT || 3031, ()=>{
-    console.log("Your server is running")
+app.listen(port, ()=>{
+    console.log(`Your server is running ${port}`)
 })
