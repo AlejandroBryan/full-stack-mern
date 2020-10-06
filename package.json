@@ -16,6 +16,7 @@
   },
   "devDependencies": {},
   "scripts": {
+    "web": "npm run start",
     "blog-install": "cd blog && npm install",
     "start": "node app.js",
     "app": "nodemon app.js",
