@@ -42,5 +42,5 @@ app.use(cors())
 app.use('/blogs', blogRoute)
 
 app.listen(process.env.PORT || 3031, ()=>{
-    console.log("Your server is running on port number", this.address().port, app.settings.env )
+    console.log("Your server is running")
 })
